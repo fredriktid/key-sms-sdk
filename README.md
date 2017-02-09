@@ -1,26 +1,31 @@
 # PHP SDK for KeySMS
 
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/build-status/master)
+
 A simple PHP SDK for [KeySMS](http://keysms.no/).
+
+## Install
+
+```
+composer require fredriktid/key-sms-sdk
+```
 
 ## Usage
 
 ```php
 <?php
 
-use FTidemann\KeySms\Auth;
-use FTidemann\KeySms\Sms\Message;
-use FTidemann\KeySms\Sms\Content;
-use FTidemann\KeySms\Sms\Recipient;
-use FTidemann\KeySms\Client;
+use FTidemann\KeySms;
 
-$auth = new Auth('username', 'apiKey');
+$auth = new KeySms\Auth('username', 'apiKey');
 
-$message = new Message();
-$message->setContent(new Content('Your message'));
-$message->addRecipient(new Recipient('5555555'));
-$message->addRecipient(new Recipient('6666666'));
+$message = new KeySms\Sms\Message();
+$message->setContent(new KeySms\Sms\Content('Your message'));
+$message->addRecipient(new KeySms\Sms\Recipient(55555555));
+$message->addRecipient(new KeySms\Sms\Recipient(66666666));
 
-$client= new Client($auth);
+$client= new KeySms\Client($auth);
 $client->setMessage($message);
 $client->setHttpClient(new \Http\Adapter\Guzzle6\Client());
 $client->send();
