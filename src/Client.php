@@ -135,7 +135,7 @@ class Client implements SmsSenderInterface
      */
     private function sendRequest($path, $data)
     {
-        $request = $this->getMessageFactory()->createRequest('POST', static::$endpoint . $path, [], $data);
+        $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint . $path, [], $data);
         return $this->httpClient->sendRequest($request);
     }
 }
