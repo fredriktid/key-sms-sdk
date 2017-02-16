@@ -111,14 +111,14 @@ class Client implements SmsSenderInterface
     {
         $message = $this->message->createMessage();
 
-        $response =  $this->sendRequest('/messages', [
+        $response = $this->sendRequest('/messages', [
             'payload' => $this->message->encodeMessage($message),
             'signature' => $this->auth->signMessage($message),
             'username' => $this->auth->getUsername()
         ]);
 
         if (null !== $this->logger) {
-            $this->logger->info('SMS sent: ' . $response->getBody());
+            $this->logger->info('SMS sent: '.$response->getBody());
         }
 
         return $response;
@@ -135,7 +135,7 @@ class Client implements SmsSenderInterface
      */
     private function sendRequest($path, $data)
     {
-        $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint . $path, [], $data);
+        $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint.$path, [], $data);
         return $this->httpClient->sendRequest($request);
     }
 }
