@@ -11,7 +11,7 @@ class AuthTest extends TestCase
     {
         $auth = new \FTidemann\KeySms\Auth($username, $apiKey);
 
-        $this->assertEquals($expected, $auth->signPayload($payload));
+        $this->assertEquals($expected, $auth->signMessage($payload));
     }
 
     public function payloadProvider()
