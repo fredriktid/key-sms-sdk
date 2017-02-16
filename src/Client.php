@@ -1,16 +1,20 @@
 <?php
-
 namespace FTidemann\KeySms;
 
 use FTidemann\KeySms\Sms\Message;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Http\Message\MessageFactory;
+use Psr\Http\Message\ResponseInterface;
+use Http\Client\Exception as HttpClientException;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Client
  * @package FTidemann\KeySms
  */
-class Client
+class Client implements SmsSenderInterface
 {
     /**
      * @var Auth
@@ -23,9 +27,24 @@ class Client
     private $message;
 
     /**
+     * @var MessageFactory
+     */
+    private $messageFactory;
+
+    /**
      * @var HttpClient
      */
     private $httpClient;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var string
+     */
+    private static $endpoint = 'https://app.keysms.no';
 
     /**
      * Client constructor.
@@ -47,6 +66,28 @@ class Client
     }
 
     /**
+     * @param LoggerInterface $logger
+     * @return $this
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+     * @return MessageFactory
+     */
+    public function getMessageFactory()
+    {
+        if (null === $this->messageFactory) {
+            $this->messageFactory = MessageFactoryDiscovery::find();
+        }
+
+        return $this->messageFactory;
+    }
+
+    /**
      * @param HttpClient|null $httpClient
      * @return $this
      */
@@ -61,8 +102,40 @@ class Client
         return $this;
     }
 
-    public function send()
+    /**
+     * Sends SMS
+     *
+     * @return ResponseInterface
+     */
+    public function sendSms()
     {
-        // TODO
+        $message = $this->message->createMessage();
+
+        $response =  $this->sendRequest('/messages', [
+            'payload' => $this->message->encodeMessage($message),
+            'signature' => $this->auth->signMessage($message),
+            'username' => $this->auth->getUsername()
+        ]);
+
+        if (null !== $this->logger) {
+            $this->logger->info('SMS sent: ' . $response->getBody());
+        }
+
+        return $response;
+    }
+
+    /**
+     * Send request
+     *
+     * @param string $path
+     * @param mixed $data
+     * @throws HttpClientException
+     * @throws \Exception
+     * @return ResponseInterface
+     */
+    private function sendRequest($path, $data)
+    {
+        $request = $this->getMessageFactory()->createRequest('POST', static::$endpoint . $path, [], $data);
+        return $this->httpClient->sendRequest($request);
     }
 }

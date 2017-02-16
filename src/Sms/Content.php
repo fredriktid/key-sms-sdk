@@ -1,5 +1,4 @@
 <?php
-
 namespace FTidemann\KeySms\Sms;
 
 /**

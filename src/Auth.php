@@ -1,5 +1,4 @@
 <?php
-
 namespace FTidemann\KeySms;
 
 /**
@@ -41,14 +40,14 @@ class Auth
     }
 
     /**
-     * Sign the payload with the apiKey
+     * Sign the message with the apiKey
      *
-     * @param array $payload
+     * @param array $message
      * @return string
      */
-    public function signPayload(array $payload)
+    public function signMessage(array $message)
     {
-        $hash = sprintf('%s%s', json_encode($payload), $this->apiKey);
+        $hash = sprintf('%s%s', json_encode($message), $this->apiKey);
         return md5($hash);
     }
 }

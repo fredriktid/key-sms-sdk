@@ -1,5 +1,4 @@
 <?php
-
 namespace FTidemann\KeySms\Sms;
 
 /**
@@ -48,5 +47,25 @@ class Message
     public function addRecipient(Recipient $recipient)
     {
         $this->recipents[] = $recipient;
+    }
+
+    /**
+     * @return array
+     */
+    public function createMessage()
+    {
+        return [
+            'message' => $this->content->getContent(),
+            'receivers' => $this->recipents
+        ];
+    }
+
+    /**
+     * @param array $message
+     * @return string
+     */
+    public function encodeMessage(array $message)
+    {
+        return json_encode($message);
     }
 }
