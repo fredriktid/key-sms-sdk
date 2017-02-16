@@ -42,6 +42,21 @@ class Message
     }
 
     /**
+     * @return array
+     */
+    public function flattenRecipients()
+    {
+        $recipients = [];
+
+        /** @var Recipient $recipient */
+        foreach ($this->getRecipients() as $recipient) {
+            $recipients[] = $recipient->getNumber();
+        }
+
+        return $recipients;
+    }
+
+    /**
      * @param Recipient $recipient
      */
     public function addRecipient(Recipient $recipient)
@@ -56,7 +71,7 @@ class Message
     {
         return [
             'message' => $this->content->getContent(),
-            'receivers' => $this->recipents
+            'receivers' => $this->flattenRecipients()
         ];
     }
 
