@@ -47,6 +47,11 @@ class Client implements SmsSenderInterface
     private static $endpoint = 'https://app.keysms.no';
 
     /**
+     * @var string
+     */
+    private static $contentType = 'multipart/form-data';
+
+    /**
      * Client constructor.
      * @param Auth $auth
      */
@@ -132,6 +137,18 @@ class Client implements SmsSenderInterface
     }
 
     /**
+     * Get POST headers
+     *
+     * @return array
+     */
+    public function getHeadersArray()
+    {
+        return [
+            'Content-Type' => self::$contentType
+        ];
+    }
+
+    /**
      * Send request
      *
      * @param string $path
@@ -142,7 +159,9 @@ class Client implements SmsSenderInterface
      */
     private function sendRequest($path, $data)
     {
-        $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint.$path, [], $data);
+        $headers = $this->getHeadersArray();
+        $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint.$path, $headers, $data);
+
         return $this->getHttpClient()->sendRequest($request);
     }
 }
