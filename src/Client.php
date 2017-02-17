@@ -78,7 +78,7 @@ class Client implements SmsSenderInterface
     /**
      * @return MessageFactory
      */
-    public function getMessageFactory()
+    private function getMessageFactory()
     {
         if (null === $this->messageFactory) {
             $this->messageFactory = MessageFactoryDiscovery::find();
@@ -111,11 +111,11 @@ class Client implements SmsSenderInterface
     {
         $message = $this->message->createMessage();
 
-        $response = $this->sendRequest('/messages', [
-            'payload' => $this->message->encodeMessage($message),
+        $response = $this->sendRequest('/messages', $this->message->encodeMessage([
+            'payload' => $message,
             'signature' => $this->auth->signMessage($message),
             'username' => $this->auth->getUsername()
-        ]);
+        ]));
 
         if (null !== $this->logger) {
             $this->logger->info('SMS sent: '.$response->getBody());
