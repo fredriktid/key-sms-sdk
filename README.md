@@ -1,13 +1,14 @@
 # PHP SDK for KeySMS
-
-
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/build-status/master)
+[![Latest Version](https://img.shields.io/github/release/fredriktid/key-sms-sdk.svg)](https://github.com/fredriktid/key-sms-sdk/releases)
+[![Build Status](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/fredriktid/key-sms-sdk.svg)](https://packagist.org/packages/fredriktid/key-sms-sdk)
 
 A simple PHP SDK for [KeySMS](http://keysms.no/).
 
 ## Requirements
 
-The SDK has a dependency on the virtual package [php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation) which requires to you install a PSR-7 compatible adapter. Any such adapter will be automatically detected. You might for instance want to use Guzzle.
+This SDK has a dependency on the virtual package [php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation) which requires to you install a compatible adapter. Any such adapter will be automatically detected. You might for instance want to use Guzzle.
 
 ```
 composer require php-http/guzzle6-adapter
