@@ -18,7 +18,7 @@ class Message
     private $recipents = [];
 
     /**
-     * @return mixed
+     * @return Content
      */
     public function getContent()
     {
