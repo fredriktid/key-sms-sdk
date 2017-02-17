@@ -3,10 +3,32 @@ namespace FTidemann\KeySms\Tests;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FTidemann\KeySms\Auth
+ */
 class AuthTest extends TestCase
 {
     /**
+     * @dataProvider usernameProvider
+     * @covers \FTidemann\KeySms\Auth::getUsername
+     */
+    public function testUsername($username, $apiKey, $expected)
+    {
+        $auth = new \FTidemann\KeySms\Auth($username, $apiKey);
+
+        $this->assertEquals($expected, $auth->getUsername());
+    }
+
+    public function usernameProvider()
+    {
+        return [
+            ['username', '9s827se6e5s4SE', 'username']
+        ];
+    }
+
+    /**
      * @dataProvider signMessageProvider
+     * @covers \FTidemann\KeySms\Auth::signMessage
      */
     public function testSignMessage($username, $apiKey, $message, $expected)
     {
