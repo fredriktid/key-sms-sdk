@@ -1,5 +1,6 @@
 # PHP SDK for KeySMS
 [![Latest Version](https://img.shields.io/github/release/fredriktid/key-sms-sdk.svg)](https://github.com/fredriktid/key-sms-sdk/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fredriktid/key-sms-sdk/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/fredriktid/key-sms-sdk.svg)](https://packagist.org/packages/fredriktid/key-sms-sdk)
