@@ -16,14 +16,16 @@ composer require fredriktid/key-sms-sdk
 ```php
 <?php
 
-$auth = new \FTidemann\KeySms\Auth('username', 'apiKey');
+use \FTidemann\KeySms;
 
-$message = new \FTidemann\KeySms\Sms\Message();
-$message->setContent(new \FTidemann\KeySms\Sms\Content('Your message'));
-$message->addRecipient(new \FTidemann\KeySms\Sms\Recipient(55555555));
-$message->addRecipient(new \FTidemann\KeySms\Sms\Recipient(66666666));
+$auth = new KeySms\Auth('username', 'apiKey');
 
-$client= new \FTidemann\KeySms\Client($auth);
+$message = new KeySms\Sms\Message();
+$message->setContent(new KeySms\Sms\Content('Your message'));
+$message->addRecipient(new KeySms\Sms\Recipient(55555555));
+$message->addRecipient(new KeySms\Sms\Recipient(66666666));
+
+$client= new KeySms\Client($auth);
 $client->setMessage($message);
 $client->setHttpClient(new \Http\Adapter\Guzzle6\Client());
 $client->sendSms();
