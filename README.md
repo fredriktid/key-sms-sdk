@@ -5,6 +5,14 @@
 
 A simple PHP SDK for [KeySMS](http://keysms.no/).
 
+## Requirements
+
+The SDK has a dependency on the virtual package [php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation) which requires to you install a PSR-7 compatible adapter. Any such adapter will be automatically detected. You might for instance want to use Guzzle.
+
+```
+composer require php-http/guzzle6-adapter
+```
+
 ## Install
 
 ```
