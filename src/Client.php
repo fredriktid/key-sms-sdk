@@ -93,13 +93,20 @@ class Client implements SmsSenderInterface
      */
     public function setHttpClient(HttpClient $httpClient = null)
     {
-        if (null !== $httpClient) {
-            $this->httpClient = $httpClient;
-            return $this;
+        $this->httpClient = $httpClient;
+        return $this;
+    }
+
+    /**
+     * @return HttpClient
+     */
+    public function getHttpClient()
+    {
+        if (null !== $this->httpClient) {
+            return $this->httpClient;
         }
 
-        $this->httpClient = HttpClientDiscovery::find();
-        return $this;
+        return HttpClientDiscovery::find();
     }
 
     /**
@@ -136,6 +143,6 @@ class Client implements SmsSenderInterface
     private function sendRequest($path, $data)
     {
         $request = $this->getMessageFactory()->createRequest('POST', self::$endpoint.$path, [], $data);
-        return $this->httpClient->sendRequest($request);
+        return $this->getHttpClient()->sendRequest($request);
     }
 }
