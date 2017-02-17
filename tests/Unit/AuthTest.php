@@ -1,5 +1,5 @@
 <?php
-namespace FTidemann\KeySms\Tests;
+namespace FTidemann\KeySms\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
