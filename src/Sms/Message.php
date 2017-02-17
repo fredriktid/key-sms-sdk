@@ -70,8 +70,8 @@ class Message
     public function createMessage()
     {
         return [
-            'message' => $this->content->getContent(),
-            'receivers' => $this->flattenRecipients()
+            'receivers' => $this->flattenRecipients(),
+            'message' => $this->content->getContent()
         ];
     }
 
