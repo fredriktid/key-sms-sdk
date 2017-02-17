@@ -72,8 +72,8 @@ class MessageTest extends TestCase
         $this->assertInstanceOf('FTidemann\KeySms\Sms\Content', $content);
 
         $expected = [
-            'message' => 'A message',
-            'receivers' => $this->phoneNumbers
+            'receivers' => array_map('strval', $this->phoneNumbers),
+            'message' => 'A message'
         ];
 
         $this->assertEquals($expected, $message->createMessage());
