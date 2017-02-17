@@ -111,8 +111,8 @@ class Client implements SmsSenderInterface
     {
         $message = $this->message->createMessage();
 
-        $response = $this->sendRequest('/messages', $this->message->encodeMessage([
-            'payload' => $message,
+        $response = $this->sendRequest('/messages', http_build_query([
+            'payload' => $this->message->encodeMessage($message),
             'signature' => $this->auth->signMessage($message),
             'username' => $this->auth->getUsername()
         ]));
