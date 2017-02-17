@@ -20,6 +20,7 @@ class ClientTest extends TestCase
     }
 
     /**
+     * @covers \FTidemann\KeySms\Client::getHttpClient
      * @covers \FTidemann\KeySms\Client::setHttpClient
      * @covers \FTidemann\KeySms\Client::setMessage
      * @covers \FTidemann\KeySms\Client::sendSms
@@ -43,6 +44,7 @@ class ClientTest extends TestCase
         $smsClient->setMessage($this->message);
 
         $this->assertInstanceOf('FTidemann\KeySms\SmsSenderInterface', $smsClient);
+        $this->assertInstanceOf('Http\Client\HttpClient', $smsClient->getHttpClient());
 
         $response = $smsClient->sendSms();
 

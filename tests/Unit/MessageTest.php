@@ -56,6 +56,7 @@ class MessageTest extends TestCase
 
     /**
      * @covers \FTidemann\KeySms\Sms\Message::createMessage
+     * @covers \FTidemann\KeySms\Sms\Message::getContent
      * @covers \FTidemann\KeySms\Sms\Message::setContent
      * @covers \FTidemann\KeySms\Sms\Message::encodeMessage
      */
@@ -66,6 +67,9 @@ class MessageTest extends TestCase
         foreach ($this->recipients as $recipient) {
             $message->addRecipient($recipient);
         }
+
+        $content = $message->getContent();
+        $this->assertInstanceOf('FTidemann\KeySms\Sms\Content', $content);
 
         $expected = [
             'message' => 'A message',
