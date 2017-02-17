@@ -14,15 +14,15 @@ class Recipient
 
     /**
      * Recipient constructor.
-     * @param integer $number
+     * @param mixed $number
      */
     public function __construct($number)
     {
-        $this->number = $number;
+        $this->number = (string)$number;
     }
 
     /**
-     * @return integer
+     * @return string
      */
     public function getNumber()
     {
