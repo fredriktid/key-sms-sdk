@@ -35,6 +35,7 @@ class MessageTest extends TestCase
             $message->addRecipient($recipient);
         }
 
+        $this->assertContainsOnlyInstancesOf(Recipient::class, $message->getRecipients());
         $this->assertEquals($this->recipients, $message->getRecipients());
         $this->assertFalse(empty($message->getRecipients()));
     }
