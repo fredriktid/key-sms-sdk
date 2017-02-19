@@ -44,7 +44,7 @@ class Message
     /**
      * @return array
      */
-    public function flattenRecipients()
+    public function getRecipientNumbers()
     {
         $recipients = [];
 
@@ -70,7 +70,7 @@ class Message
     public function createMessage()
     {
         return [
-            'receivers' => $this->flattenRecipients(),
+            'receivers' => $this->getRecipientNumbers(),
             'message' => $this->content->getContent()
         ];
     }

@@ -41,17 +41,17 @@ class MessageTest extends TestCase
 
 
     /**
-     * @covers \FTidemann\KeySms\Sms\Message::flattenRecipients
+     * @covers \FTidemann\KeySms\Sms\Message::getRecipientNumbers
      */
-    public function testFlattenRecipients()
+    public function testGetRecipientNumbers()
     {
         $message = new \FTidemann\KeySms\Sms\Message;
         foreach ($this->recipients as $recipient) {
             $message->addRecipient($recipient);
         }
 
-        $this->assertEquals($this->phoneNumbers, $message->flattenRecipients());
-        $this->assertFalse(empty($message->flattenRecipients()));
+        $this->assertEquals($this->phoneNumbers, $message->getRecipientNumbers());
+        $this->assertFalse(empty($message->getRecipientNumbers()));
     }
 
     /**

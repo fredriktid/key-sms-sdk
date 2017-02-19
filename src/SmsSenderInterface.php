@@ -1,6 +1,8 @@
 <?php
 namespace FTidemann\KeySms;
 
+use Psr\Http\Message\ResponseInterface;
+
 /**
  * Interface SmsSenderInterface
  * @package FTidemann\KeySms
@@ -8,7 +10,9 @@ namespace FTidemann\KeySms;
 interface SmsSenderInterface
 {
     /**
-     * @return mixed
+     * Sends SMS
+     *
+     * @return ResponseInterface
      */
     public function sendSms();
 }

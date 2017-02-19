@@ -8,7 +8,7 @@ namespace FTidemann\KeySms\Sms;
 class Recipient
 {
     /**
-     * @var integer
+     * @var string
      */
     private $number;
 

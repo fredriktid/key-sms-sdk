@@ -14,11 +14,11 @@ class Content
 
     /**
      * Content constructor.
-     * @param string $content
+     * @param mixed $content
      */
     public function __construct($content)
     {
-        $this->content = $content;
+        $this->content = (string)$content;
     }
 
     /**
