@@ -15,7 +15,7 @@ class Message
     /**
      * @var array
      */
-    private $recipents = [];
+    private $recipients = [];
 
     /**
      * @return Content
@@ -38,7 +38,7 @@ class Message
      */
     public function getRecipients()
     {
-        return $this->recipents;
+        return $this->recipients;
     }
 
     /**
@@ -61,7 +61,7 @@ class Message
      */
     public function addRecipient(Recipient $recipient)
     {
-        $this->recipents[] = $recipient;
+        $this->recipients[] = $recipient;
     }
 
     /**
