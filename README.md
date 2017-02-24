@@ -37,7 +37,7 @@ $message->addRecipient(new KeySms\Sms\Recipient(66666666));
 
 $client= new KeySms\Client($auth);
 $client->setMessage($message);
-$client->setHttpClient(new \Http\Adapter\Guzzle6\Client());
+$client->setHttpClient(new \Http\Adapter\Guzzle6\Client()); // optional
 $client->sendSms();
 
 ```
