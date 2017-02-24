@@ -28,5 +28,4 @@ class Content
     {
         return $this->content;
     }
-
 }
