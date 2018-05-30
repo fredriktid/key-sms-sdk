@@ -63,6 +63,16 @@ class Message
     {
         $this->recipients[] = $recipient;
     }
+    
+    /**
+     * @return $this
+     */
+    public function clearRecipients()
+    {
+        $this->recipients = [];
+
+        return $this;
+    }
 
     /**
      * @return array
